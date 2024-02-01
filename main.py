@@ -9,7 +9,7 @@ port_name = port[1]
 midi_port = mido.open_input(port_name)
 
 print("Lecture des messages MIDI. Appuie sur Ctrl+C pour arrêter.")
-oldmsg = ""
+oldmsg = None
 try:
     for msg in midi_port:
         if(msg != oldmsg):
