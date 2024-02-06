@@ -43,11 +43,11 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
             v = int(((msg.note-22)/88)*75)
-            led(v)
+            ledOn(v)
             print(f"Notes appuyées : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             v = int(((msg.note-22)/88)*75)
-            led(v)
+            ledOff(v)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
 except KeyboardInterrupt:
