@@ -19,6 +19,31 @@ red = Color(255, 0, 0)
 
 black = Color(0, 0, 0)
 
+def getColor(intensite):
+
+    # Convertir l'intensité en une valeur entre 0 et 255
+    valeur = int(intensite * 2.55)
+    
+    # Déterminer la couleur en fonction de l'intensité
+    if valeur <= 127:
+        # Bleu à vert
+        rouge = 0
+        vert = valeur * 2
+        bleu = 255 - valeur * 2
+    else:
+        # Vert à rouge
+        rouge = (valeur - 128) * 2
+        vert = 255 - (valeur - 128) * 2
+        bleu = 0
+    
+    # Retourner la couleur
+    return Color(rouge, vert, bleu)
+
+def ledIntensite(nb):
+    v = getColor(nb)
+    strip.setPixelColor(nb, v)
+    strip.show()
+
 def ledOn(nb):
     strip.setPixelColor(nb, red)
     strip.show()
@@ -43,7 +68,7 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
             v = int(((msg.note-22)/88)*75)
-            ledOn(v)
+            ledIntensite(v)
             print(f"Notes appuyées : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             v = int(((msg.note-22)/88)*75)
