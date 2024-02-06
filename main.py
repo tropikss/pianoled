@@ -30,7 +30,7 @@ print(mido.get_input_names())
 notes_appuyees = set()
 
 # Choisis le port MIDI approprié
-port_name = port[0]
+port_name = port[1]
 midi_port = mido.open_input(port_name)
 
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
