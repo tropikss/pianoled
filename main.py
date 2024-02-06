@@ -1,10 +1,9 @@
 import mido
-import board
 import neopixel
 
 # Configuration des LEDs
 NUM_LEDS = 75  # Nombre total de LEDs dans la bande
-PIN_LED = board.D18  # Port GPIO auquel les LEDs sont connectées
+PIN_LED = 18  # Port GPIO auquel les LEDs sont connectées
 BRIGHTNESS = 0.5  # Luminosité des LEDs (0 à 1)
 
 # Initialisation de la bande de LEDs
