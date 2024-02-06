@@ -1,26 +1,27 @@
 import mido
-import neopixel
-
 import time
-from rpi_ws281x import *
-import argparse
+from rpi_ws281x import PixelStrip, Color
 
-# LED strip configuration:
-LED_COUNT      = 75     # Number of LED pixels.
-LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
-#LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
-LED_DMA        = 10      # DMA channel to use for generating a signal (try 10)
-LED_BRIGHTNESS = 65      # Set to 0 for darkest and 255 for brightest
-LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
-LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+# Configuration des LEDs
+LED_COUNT = 75         # Nombre total de LEDs dans la bande
+LED_PIN = 18           # GPIO utilisé pour contrôler les LEDs
+LED_FREQ_HZ = 800000   # Fréquence des LEDs (ne pas modifier)
+LED_DMA = 10           # Canal DMA utilisé pour transmettre les données aux LEDs (ne pas modifier)
+LED_BRIGHTNESS = 50   # Luminosité des LEDs (0 à 255)
+LED_INVERT = False     # Inverser le signal de données (True ou False)
+LED_CHANNEL = 0        # Numéro du canal matériel utilisé pour les LEDs (0 ou 1)
 
-# Allumer 3 LEDs en rouge
-for i in range(3):
-    pixels[i] = (255, 0, 0)  # Rouge
+# Initialisation de la bande de LEDs
+strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+strip.begin()
 
-# Mise à jour des LEDs pour afficher les changements
-pixels.show()
+red = Color(255, 0, 0)
+
+black = Color(0, 0, 0)
+
+def led(nb):
+    strip.setPixelColor(nb, red)
+    pixels.show()
 
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
@@ -37,8 +38,12 @@ try:
     for msg in midi_port:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
+            v = int(((msg.note-22)/88)*75)
+            led(v, red)
             print(f"Notes appuyées : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
+            v = int(((msg.note-22)/88)*75)
+            led(v, black)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
 except KeyboardInterrupt:
