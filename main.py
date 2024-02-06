@@ -21,11 +21,11 @@ black = Color(0, 0, 0)
 
 def ledOn(nb):
     strip.setPixelColor(nb, red)
-    pixels.show()
+    strip.show()
 
 def ledOff(nb):
     strip.setPixelColor(nb, black)
-    pixels.show()
+    strip.show()
 
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
