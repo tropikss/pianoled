@@ -19,9 +19,13 @@ red = Color(255, 0, 0)
 
 black = Color(0, 0, 0)
 
-def led(nb):
+def ledOn(nb):
     strip.setPixelColor(nb, red)
     pixels.show()
+
+def ledOff(nb):
+    strip.setPixelColor(nb, black)
+    pixels.show()*
 
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
@@ -39,11 +43,11 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
             v = int(((msg.note-22)/88)*75)
-            led(v, red)
+            led(v)
             print(f"Notes appuyées : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             v = int(((msg.note-22)/88)*75)
-            led(v, black)
+            led(v)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
 except KeyboardInterrupt:
