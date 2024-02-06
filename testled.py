@@ -25,6 +25,8 @@ def allumer_trois_premieres_leds(couleur):
     for i in range(3):
         strip.setPixelColor(i, Color(*couleur))
     strip.show()
+    # Pause pour permettre aux changements d'être visibles
+    time.sleep(1)
 
 # Exemple d'utilisation : Allumer les trois premières LEDs en rouge
 allumer_trois_premieres_leds((255, 0, 0))  # Rouge
