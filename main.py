@@ -1,4 +1,21 @@
 import mido
+import board
+import neopixel
+
+# Configuration des LEDs
+NUM_LEDS = 75  # Nombre total de LEDs dans la bande
+PIN_LED = board.D18  # Port GPIO auquel les LEDs sont connectées
+BRIGHTNESS = 0.5  # Luminosité des LEDs (0 à 1)
+
+# Initialisation de la bande de LEDs
+pixels = neopixel.NeoPixel(PIN_LED, NUM_LEDS, brightness=BRIGHTNESS, auto_write=False)
+
+# Allumer 3 LEDs en rouge
+for i in range(3):
+    pixels[i] = (255, 0, 0)  # Rouge
+
+# Mise à jour des LEDs pour afficher les changements
+pixels.show()
 
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
