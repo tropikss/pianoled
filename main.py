@@ -103,7 +103,8 @@ try:
             ledColor(ceil, (255, 0, 0), ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            ledOff(v)
+            ledOff(floor)
+            ledOff(ceil)
 
             notes_appuyees.discard(msg.note)
             
