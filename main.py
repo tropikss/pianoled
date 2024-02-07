@@ -146,8 +146,7 @@ def ledOn(nb):
 def ledOff(nb):
     strip.setPixelColor(nb, black)
     strip.show()
-    leds_allumees.pop(numero_led, None)
-
+    
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
 print(mido.get_input_names())
