@@ -167,7 +167,7 @@ led_tab_init()
 
 try:
     for msg in midi_port:
-        print(msg)
+        print(msg.type)
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
