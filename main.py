@@ -54,6 +54,8 @@ def add_led(nb):
     led_tab[floor] = ef 
     led_tab[ceil] = ec
 
+    print("added led : " + str(floor) + str(ceil))
+
 STEP = 0.10
 
 def refresh_strip():
