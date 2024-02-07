@@ -188,7 +188,7 @@ try:
             i += 1
 
         print(led_tab)
-        refresh_strip(get_blue_gradient(i))
+        refresh_strip(get_blue_gradient(i-1))
 
         if i > 100:
             i = 0
