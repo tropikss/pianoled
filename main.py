@@ -185,8 +185,8 @@ try:
             notes_appuyees.add(msg.note)
             print("note_on")
             add_led(msg.note)
-            ledColor(floor-1, getColor(i), ef)
-            ledColor(ceil-1, getColor(i), ec)
+            ledColor(floor-1, getColor(i), 1-ef)
+            ledColor(ceil-1, getColor(i), 1-ec)
             #refresh_strip()
             i += 1
 
