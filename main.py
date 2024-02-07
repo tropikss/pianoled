@@ -187,22 +187,14 @@ try:
             add_led(msg.note)
             #ledColor(floor-1, getColor(i), ef)
             #ledColor(ceil-1, getColor(i), ec)
+            refresh_strip()
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
             #ledOff(floor-1)
             #ledOff(ceil-1)
-
-        print(i)
-        for led_index, intensity in enumerate(led_tab):
-            if intensity > 0:
-                ledColor(led_index, getColor(intensity), intensity)
-                led_tab[led_index] -= STEP
-                if led_tab[led_index] < 0:
-                    led_tab[led_index] = 0
-            else:
-                ledOff(led_index)
+            refresh_strip()
 
         if i > 100:
             i = 0
