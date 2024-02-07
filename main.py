@@ -167,7 +167,7 @@ led_tab_init()
 
 try:
     for msg in midi_port:
-        if(msg.type != 'clock')
+        if(msg.type != 'clock'):
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
             floor = math.floor(temp)
