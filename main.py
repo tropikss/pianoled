@@ -1,6 +1,7 @@
 import mido
 import time
 from rpi_ws281x import PixelStrip, Color
+import math
 
 # Configuration des LEDs
 LED_COUNT = 75         # Nombre total de LEDs dans la bande
@@ -67,11 +68,11 @@ try:
     for msg in midi_port:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            v = int(((msg.note-22)/88)*75)
+            v = math.ceil(((msg.note-22)/88)*75)
             ledIntensite(v)
             print(f"Notes appuyees : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            v = int(((msg.note-21)/88)*75)
+            v = math.ceil(((msg.note-22)/88)*75)
             ledOff(v)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
