@@ -176,6 +176,7 @@ try:
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
 
+        print("here")
         refresh_strip()
 
 except KeyboardInterrupt:
