@@ -55,7 +55,7 @@ def getColor(intensite):
         bleu = 0
     
     # Retourner la couleur
-    return Color(rouge, vert, bleu)
+    return (rouge, vert, bleu)
 
 def ledColor(numero_led, couleur, intensite):
     strip.setPixelColor(numero_led, Color(int(couleur[0] * intensite), int(couleur[1] * intensite), int(couleur[2] * intensite)))
@@ -84,6 +84,8 @@ notes_appuyees = set()
 port_name = port[1]
 midi_port = mido.open_input(port_name)
 
+i = 0
+
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
 try:
     for msg in midi_port:
@@ -99,14 +101,18 @@ try:
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            ledColor(floor-1, (255, 0, 0), 1-ef)
-            ledColor(ceil-1, (255, 0, 0), 1-ec)
+            ledColor(floor-1, getColor(i), 1-ef)
+            ledColor(ceil-1, getColor(i), 1-ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             ledOff(floor-1)
             ledOff(ceil-1)
 
             notes_appuyees.discard(msg.note)
+
+        i += 1
+        if(i > 100):
+            i = 0
             
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
