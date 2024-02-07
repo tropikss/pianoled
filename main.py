@@ -23,6 +23,38 @@ STEP = 0.02
 red = Color(255, 0, 0)
 black = Color(0, 0, 0)
 
+def get_blue_gradient(percentage):
+    """
+    Renvoie un triplet d'entiers représentant une couleur bleue allant d'un bleu ciel à un bleu profond.
+    Le pourcentage doit être compris entre 0 et 100.
+    """
+    # Définition des couleurs de référence
+    sky_blue = (135, 206, 250)  # Bleu ciel
+    deep_blue = (0, 0, 139)      # Bleu profond
+    
+    # Calcul de la couleur intermédiaire en fonction du pourcentage
+    r = sky_blue[0] + int((deep_blue[0] - sky_blue[0]) * percentage / 100)
+    g = sky_blue[1] + int((deep_blue[1] - sky_blue[1]) * percentage / 100)
+    b = sky_blue[2] + int((deep_blue[2] - sky_blue[2]) * percentage / 100)
+    
+    return (r, g, b)
+
+def get_orange_gradient(percentage):
+    """
+    Renvoie un triplet d'entiers représentant une couleur orange allant d'un orange clair à un orange profond.
+    Le pourcentage doit être compris entre 0 et 100.
+    """
+    # Définition des couleurs de référence
+    light_orange = (255, 165, 0)  # Orange clair
+    deep_orange = (255, 69, 0)    # Orange profond
+    
+    # Calcul de la couleur intermédiaire en fonction du pourcentage
+    r = light_orange[0] + int((deep_orange[0] - light_orange[0]) * percentage / 100)
+    g = light_orange[1] + int((deep_orange[1] - light_orange[1]) * percentage / 100)
+    b = light_orange[2] + int((deep_orange[2] - light_orange[2]) * percentage / 100)
+    
+    return (r, g, b)
+
 def conversion(argument):
     switcher = {
         0: lambda: 1,
@@ -156,7 +188,7 @@ try:
             i += 1
 
         print(led_tab)
-        refresh_strip(getColor(i))
+        refresh_strip(get_blue_gradient(i))
 
         if i > 100:
             i = 0
