@@ -155,8 +155,8 @@ try:
             if msg.note in notes_appuyees:
                 del notes_appuyees[msg.note]
         
-        for i in notes_appuyees:
-            add_led(notes_appuyees[i], 0.5)
+        for u in notes_appuyees:
+            add_led(notes_appuyees[u], 0.5)
             i += 1
 
         print(led_tab)
