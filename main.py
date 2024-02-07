@@ -174,7 +174,6 @@ try:
             add_led(ceil-1, 1-ec)
             #ledColor(floor-1, getColor(i), 1-ef)
             #ledColor(ceil-1, getColor(i), 1-ec)
-            refresh_strip(getColor(i))
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
@@ -183,7 +182,8 @@ try:
             #ledOff(ceil-1)
             rem_led(floor-1)
             rem_led(ceil-1)
-            refresh_strip(getColor(i))
+            
+        refresh_strip(getColor(i))
 
         if i > 100:
             i = 0
