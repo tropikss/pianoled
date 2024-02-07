@@ -16,8 +16,11 @@ LED_CHANNEL = 0        # Numéro du canal matériel utilisé pour les LEDs (0 ou
 strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
 
-red = Color(255, 0, 0)
+# Parametre de controle 
+STEP = 0.2
 
+# Couleur prédéfinies
+red = Color(255, 0, 0)
 black = Color(0, 0, 0)
 
 def conversion(argument):
@@ -46,8 +49,6 @@ def add_led(nb, v):
 def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
-
-STEP = 0.10
 
 def refresh_strip(couleur):
     to_remove = []
