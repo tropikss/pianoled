@@ -57,6 +57,10 @@ def getColor(intensite):
     # Retourner la couleur
     return Color(rouge, vert, bleu)
 
+def ledColor(numero_led, couleur, intensite):
+    strip.setPixelColor(numero_led, Color(int(couleur[0] * intensite), int(couleur[1] * intensite), int(couleur[2] * intensite)))
+    strip.show()
+
 def ledIntensite(nb):
     v = getColor(nb)
     strip.setPixelColor(nb, v)
@@ -88,16 +92,15 @@ try:
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
             floor = math.floor(temp)
             ceil = math.ceil(temp)
-            eg = round(floor - temp, 2)
-            ed = round(ceil - temp, 2)
-            print(eg)
-            print(ed)
+            ef = round(temp - floor, 2)
+            ec = round(ceil - temp, 2)
 
             v = round(temp) - 1
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            ledIntensite(v)
+            ledColor(floor, (255, 0, 0), ef)
+            ledColor(ceil, (255, 0, 0), ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             ledOff(v)
