@@ -81,10 +81,11 @@ def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
 
-def refresh_strip(couleur):
+def refresh_strip():
     to_remove = []
     for i in led_tab:
         if(led_tab[i] > 0):
+            couleur = get_blue_gradient((i/LED_COUNT)*100-1)
             ledColor(i, couleur, led_tab[i])
             led_tab[i] = round(led_tab[i] - STEP, 2)
         else:
@@ -188,7 +189,7 @@ try:
             i += 1
 
         print(led_tab)
-        refresh_strip(get_blue_gradient(i-1))
+        refresh_strip()
 
         if i > 100:
             i = 0
