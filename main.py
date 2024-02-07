@@ -39,15 +39,12 @@ def conversion(argument):
 
 led_tab = {}
 
-def led_tab_init():
-    for i in range(LED_COUNT):
-        led_tab.append(0)
-
 def add_led(nb, v):
     led_tab[nb] = v
 
 def rem_led(nb):
-    led_tab.pop(nb)
+    if nb in led_tab:
+        del led_tab[nb]
 
 STEP = 0.10
 
