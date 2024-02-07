@@ -86,6 +86,13 @@ try:
         if(msg.type != 'clock'):
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09
+            floor = math.floor(temp)
+            ceil = math.ceil(temp)
+            eg = floor - temp
+            ed = ceil - temp
+            print(eg)
+            print(ed)
+            
             v = round(temp) - 1
             print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
