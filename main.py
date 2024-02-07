@@ -91,8 +91,10 @@ def wave(nb, couleur):
     for i in range(LED_COUNT):
         if(g < nb):
             ledColor(g, couleur, 0.5)
+            ledOff(g-1)
         if(d > nb):
             ledColor(d, couleur, 0.5)
+            ledOff(d-1)
         g += 1
         d += 1
         time.sleep(0.1)
