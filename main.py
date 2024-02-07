@@ -88,7 +88,7 @@ try:
 
             nb = msg.note - 21
             v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
-            print((conversion(nb%12) + (nb//12)*7))
+            print(v)
 
             ledIntensite(v)
 
@@ -96,7 +96,6 @@ try:
 
             nb = msg.note - 21
             v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
-            print((conversion(nb%12) + (nb//12)*7))
 
             ledOff(v)
             notes_appuyees.discard(msg.note)
