@@ -37,22 +37,50 @@ def conversion(argument):
     }
     return switcher.get(argument, lambda: "Valeur invalide")()
 
-def getColor(intensite):
-
-    # Convertir l'intensité en une valeur entre 0 et 255
-    valeur = int(intensite * 2.55)
+def get_color(percentage):
+    """
+    Renvoie un triplet d'entiers représentant une couleur en fonction du pourcentage donné.
+    Le pourcentage doit être compris entre 0 et 100.
+    """
+    # Définition des couleurs de référence
+    rouge = (255, 0, 0)
+    jaune = (255, 255, 0)
+    vert = (0, 255, 0)
+    cyan = (0, 255, 255)
+    bleu = (0, 0, 255)
+    magenta = (255, 0, 255)
     
-    # Déterminer la couleur en fonction de l'intensité
-    if valeur <= 127:
-        # Bleu à vert
-        rouge = 0
-        vert = valeur * 2
-        bleu = 255 - valeur * 2
+    # Séparation du pourcentage en intervalles correspondant à différentes transitions de couleur
+    if percentage < 20:
+        # Transition de rouge à jaune
+        r1 = rouge[0] + int((jaune[0] - rouge[0]) * percentage / 20)
+        g1 = rouge[1] + int((jaune[1] - rouge[1]) * percentage / 20)
+        b1 = rouge[2] + int((jaune[2] - rouge[2]) * percentage / 20)
+        return (r1, g1, b1)
+    elif percentage < 40:
+        # Transition de jaune à vert
+        r2 = jaune[0] + int((vert[0] - jaune[0]) * (percentage - 20) / 20)
+        g2 = jaune[1] + int((vert[1] - jaune[1]) * (percentage - 20) / 20)
+        b2 = jaune[2] + int((vert[2] - jaune[2]) * (percentage - 20) / 20)
+        return (r2, g2, b2)
+    elif percentage < 60:
+        # Transition de vert à cyan
+        r3 = vert[0] + int((cyan[0] - vert[0]) * (percentage - 40) / 20)
+        g3 = vert[1] + int((cyan[1] - vert[1]) * (percentage - 40) / 20)
+        b3 = vert[2] + int((cyan[2] - vert[2]) * (percentage - 40) / 20)
+        return (r3, g3, b3)
+    elif percentage < 80:
+        # Transition de cyan à bleu
+        r4 = cyan[0] + int((bleu[0] - cyan[0]) * (percentage - 60) / 20)
+        g4 = cyan[1] + int((bleu[1] - cyan[1]) * (percentage - 60) / 20)
+        b4 = cyan[2] + int((bleu[2] - cyan[2]) * (percentage - 60) / 20)
+        return (r4, g4, b4)
     else:
-        # Vert à rouge
-        rouge = (valeur - 128) * 2
-        vert = 255 - (valeur - 128) * 2
-        bleu = 0
+        # Transition de bleu à magenta
+        r5 = bleu[0] + int((magenta[0] - bleu[0]) * (percentage - 80) / 20)
+        g5 = bleu[1] + int((magenta[1] - bleu[1]) * (percentage - 80) / 20)
+        b5 = bleu[2] + int((magenta[2] - bleu[2]) * (percentage - 80) / 20)
+        return (r5, g5, b5)
     
     # Retourner la couleur
     return (rouge, vert, bleu)
