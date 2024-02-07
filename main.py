@@ -43,8 +43,7 @@ def conversion(argument):
 led_tab = {}
 
 def add_led(nb, v):
-    if nb not in led_tab:
-        led_tab[nb] = v
+    led_tab[nb] = v
 
 def rem_led(nb):
     if nb in led_tab:
@@ -158,6 +157,7 @@ try:
         
         for i in notes_appuyees:
             add_led(notes_appuyees[i], 0.5)
+            i += 1
 
         print(led_tab)
         refresh_strip(getColor(i))
