@@ -59,10 +59,12 @@ STEP = 0.10
 def refresh_strip():
     for i in range(len(led_tab)):
         if(led_tab[i] > 0):
-            ledColor(i, (255, 0, 0),led_tab[i])
+            ledColor(i, (255, 0, 0), led_tab[i])
             led_tab[i] -= STEP
             if(led_tab[i] < 0):
                 led_tab[i] = 0
+        else:
+            ledOff(led_tab[i])
 
 def getColor(percentage):
     """
