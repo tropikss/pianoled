@@ -55,6 +55,7 @@ def refresh_strip():
     for i in led_tab:
         if(led_tab[i] > 0):
             print("ledColor("+str(i)+", "+str(led_tab[i])+")")
+            ledColor(i, led_tab[i])
             led_tab[i] -= STEP
             if(led_tab[i] < 0):
                 led_tab[i] = 0
