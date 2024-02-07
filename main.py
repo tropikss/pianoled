@@ -87,7 +87,7 @@ try:
             notes_appuyees.add(msg.note)
 
             nb = msg.note - 21
-            v = math.ceil(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+            v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
             ledIntensite(v)
             print(f"Notes appuyees : {notes_appuyees}")
@@ -95,7 +95,7 @@ try:
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
 
             nb = msg.note - 21
-            v = math.ceil(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+            v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
             ledOff(v)
             notes_appuyees.discard(msg.note)
