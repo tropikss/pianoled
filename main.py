@@ -152,8 +152,6 @@ def ledOff(nb):
 port = mido.get_input_names()
 print(mido.get_input_names())
 
-nb_led
-
 notes_appuyees = set()
 leds_allumees = {}
 
