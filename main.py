@@ -146,7 +146,6 @@ try:
             led_tab[ceil] = ec
 
         if msg.type == 'note_on' and msg.velocity > 0:
-            print(notes_appuyees)
             notes_appuyees.add(msg.note)
             #add_led(floor-1, 1-ef)
             add_led(ceil-1, 1-ec)
