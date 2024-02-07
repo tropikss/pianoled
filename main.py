@@ -177,17 +177,18 @@ try:
             led_tab[floor] = ef 
             led_tab[ceil] = ec
 
-            ledColor(floor, (255, 0, 0), ef)
-            ledColor(ceil, (255, 0, 0), ec)
-
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
             print("note_on")
             add_led(msg.note)
+            ledColor(floor, (255, 0, 0), ef)
+            ledColor(ceil, (255, 0, 0), ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
+            ledOff(floor)
+            ledOff(ceil)
 
         #refresh_strip()
 
