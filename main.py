@@ -84,7 +84,7 @@ try:
             notes_appuyees.add(msg.note)
 
             nb = msg.note - 22
-            v = math.ceil(((conversion((nb-22)%12) + ((nb-22)//12)*7) / 52) * LED_COUNT)
+            v = math.ceil(((conversion((nb-22)%12) + (nb//12)*7) / 52) * LED_COUNT)
 
             ledIntensite(v)
             print(f"Notes appuyees : {notes_appuyees}")
