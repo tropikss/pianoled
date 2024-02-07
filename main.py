@@ -169,8 +169,10 @@ i = 0
 
 try:
     for msg in midi_port:
+
+        refresh_strip()
+
         if(msg.type != 'clock'):
-            print(msg.note)
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
             floor = math.floor(temp)
@@ -193,8 +195,6 @@ try:
             notes_appuyees.discard(msg.note)
             #ledOff(floor-1)
             #ledOff(ceil-1)
-
-        #refresh_strip()
 
         if i > 100:
             i = 0
