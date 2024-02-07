@@ -85,15 +85,15 @@ def getColor(percentage):
     # Retourner la couleur
     return (rouge, vert, bleu)
 
-def wave(nb, couleur):
+def wave(nb):
     g = 0
     d = LED_COUNT
     for i in range(LED_COUNT):
         if(g < nb):
-            ledColor(g, couleur, 0.5)
+            ledColor(g, getColor(g), 0.5)
             ledOff(g-1)
         if(d > nb):
-            ledColor(d, couleur, 0.5)
+            ledColor(d, getColor(d), 0.5)
             ledOff(d+1)
         g += 1
         d -= 1
@@ -147,7 +147,7 @@ try:
             notes_appuyees.add(msg.note)
             #ledColor(floor-1, getColor(i), 1-ef)
             ledColor(ceil-1, getColor(i), 1-ec)
-            wave(ceil-1, getColor(i))
+            wave(ceil-1)
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
