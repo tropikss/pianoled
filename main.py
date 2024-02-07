@@ -103,6 +103,7 @@ try:
             notes_appuyees.add(msg.note)
             ledColor(floor-1, getColor(i), 1-ef)
             ledColor(ceil-1, getColor(i), 1-ec)
+            i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             ledOff(floor-1)
@@ -110,7 +111,6 @@ try:
 
             notes_appuyees.discard(msg.note)
 
-        i += 1
         if(i > 100):
             i = 0
             
