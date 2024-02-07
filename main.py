@@ -142,8 +142,6 @@ try:
             ceil = math.ceil(temp)
             ef = round(temp - floor, 2)
             ec = round(ceil - temp, 2)
-            led_tab[floor] = ef 
-            led_tab[ceil] = ec
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
