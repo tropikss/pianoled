@@ -85,6 +85,19 @@ def getColor(percentage):
     # Retourner la couleur
     return (rouge, vert, bleu)
 
+def wave(nb, couleur):
+    g = 0
+    d = LED_COUNT
+    for i in range(LED_COUNT):
+        if(g < nb):
+            ledColor(g, couleur, 0.5)
+        if(d > nb):
+            ledColor(d, couleur, 0.5)
+        g += 1
+        d += 1
+        time.sleep(0.1)
+
+
 def ledColor(numero_led, couleur, intensite):
     strip.setPixelColor(numero_led, Color(int(couleur[0] * intensite), int(couleur[1] * intensite), int(couleur[2] * intensite)))
     strip.show()
@@ -129,8 +142,9 @@ try:
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            ledColor(floor-1, getColor(i), 1-ef)
+            #ledColor(floor-1, getColor(i), 1-ef)
             ledColor(ceil-1, getColor(i), 1-ec)
+            wave(ceil-1, getColor(i))
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
