@@ -20,19 +20,22 @@ red = Color(255, 0, 0)
 
 black = Color(0, 0, 0)
 
-def conversion(nb):
-    if(nb == 2):
-        return 1.5
-    elif(nb == 4):
-        return 2.5
-    elif(nb == 7):
-        return 4.5
-    elif(nb == 9):
-        return 5.5
-    elif(nb == 11):
-        return 6.5
-    else:
-        return nb
+def conversion(argument):
+    switcher = {
+        0: lambda: 1,
+        1: lambda: 1.5,
+        2: lambda: 2,
+        3: lambda: 3,
+        4: lambda: 3.5,
+        5: lambda: 4,
+        6: lambda: 4.5,
+        7: lambda: 5,
+        8: lambda: 6,
+        9: lambda: 6.5,
+        10: lambda: 7,
+        11: lambda: 7.5,
+    }
+    return switcher.get(argument, lambda: "Valeur invalide")()
 
 def getColor(intensite):
 
