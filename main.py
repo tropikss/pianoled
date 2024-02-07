@@ -195,7 +195,7 @@ try:
             #ledOff(floor-1)
             #ledOff(ceil-1)
 
-        refresh_strip()
+        #refresh_strip()
 
         if i > 100:
             i = 0
