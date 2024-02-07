@@ -97,8 +97,9 @@ def wave(nb, couleur):
             ledOff(d-1)
         g += 1
         d += 1
-        time.sleep(0.1)
-
+        time.sleep(0.03)
+    ledOff(d)
+    ledOff(g)
 
 def ledColor(numero_led, couleur, intensite):
     strip.setPixelColor(numero_led, Color(int(couleur[0] * intensite), int(couleur[1] * intensite), int(couleur[2] * intensite)))
