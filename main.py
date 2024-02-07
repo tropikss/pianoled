@@ -53,6 +53,7 @@ def refresh_strip(couleur):
     for i in led_tab:
         if(led_tab[i] > 0):
             ledColor(i, couleur, led_tab[i])
+            time.sleep(0.05)
             led_tab[i] = round(led_tab[i] - STEP, 2)
             if(led_tab[i] <= 0):
                 to_remove.append(i)
