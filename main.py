@@ -8,7 +8,7 @@ LED_COUNT = 74         # Nombre total de LEDs dans la bande
 LED_PIN = 18           # GPIO utilisé pour contrôler les LEDs
 LED_FREQ_HZ = 800000   # Fréquence des LEDs (ne pas modifier)
 LED_DMA = 10           # Canal DMA utilisé pour transmettre les données aux LEDs (ne pas modifier)
-LED_BRIGHTNESS = 100   # Luminosité des LEDs (0 à 255)
+LED_BRIGHTNESS = 50   # Luminosité des LEDs (0 à 255)
 LED_INVERT = False     # Inverser le signal de données (True ou False)
 LED_CHANNEL = 0        # Numéro du canal matériel utilisé pour les LEDs (0 ou 1)
 
@@ -17,7 +17,7 @@ strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRI
 strip.begin()
 
 # Parametre de controle 
-STEP = 0.05
+STEP = 0.01
 
 # Couleur prédéfinies
 red = Color(255, 0, 0)
