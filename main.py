@@ -69,9 +69,9 @@ try:
             notes_appuyees.add(msg.note)
             v = int(((msg.note-22)/88)*75)
             ledIntensite(v)
-            print(f"Notes appuyées : {notes_appuyees}")
+            print(f"Notes appuyees : {notes_appuyees}")
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            v = int(((msg.note-22)/88)*75)
+            v = int(((msg.note-21)/88)*75)
             ledOff(v)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
