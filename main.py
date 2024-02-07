@@ -83,16 +83,16 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
 
-            nb = msg.note - 22
-            v = math.ceil(((conversion((nb-22)%12) + (nb//12)*7) / 52) * LED_COUNT)
-            print(((conversion((nb-22)%12) + (nb//12)*7)))
+            nb = msg.note - 21
+            v = math.ceil(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+            print(((conversion(nb%12) + (nb//12)*7)))
 
             #ledIntensite(v)
             print(f"Notes appuyees : {notes_appuyees}")
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
 
-            nb = msg.note - 22
+            nb = msg.note - 21
             v = math.ceil(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
             print(((conversion(nb%12) + (nb//12)*7)))
 
