@@ -55,8 +55,8 @@ def refresh_strip(couleur):
             ledColor(i, couleur, led_tab[i])
             led_tab[i] -= STEP
             if(led_tab[i] <= 0):
-                led_tab[i] = 0
-                ledOff(led_tab[i])
+                rem_led(i)
+                ledOff(i)
 
 def getColor(percentage):
     """
@@ -106,33 +106,8 @@ def getColor(percentage):
     # Retourner la couleur
     return (rouge, vert, bleu)
 
-def wave(nb):
-    g = 0
-    d = LED_COUNT
-    for i in range(LED_COUNT):
-        if(g < nb):
-            ledColor(g, getColor(g), 0.5)
-            ledOff(g-1)
-        if(d > nb):
-            ledColor(d, getColor(d), 0.5)
-            ledOff(d+1)
-        g += 1
-        d -= 1
-        time.sleep(0.03)
-    ledOff(d)
-    ledOff(g)
-
 def ledColor(numero_led, couleur, intensite):
     strip.setPixelColor(numero_led, Color(int(couleur[0] * intensite), int(couleur[1] * intensite), int(couleur[2] * intensite)))
-    strip.show()
-
-def ledIntensite(nb):
-    v = getColor(nb)
-    strip.setPixelColor(nb, v)
-    strip.show()
-
-def ledOn(nb):
-    strip.setPixelColor(nb, red)
     strip.show()
 
 def ledOff(nb):
@@ -182,7 +157,7 @@ try:
             #ledOff(ceil-1)
             rem_led(floor-1)
             rem_led(ceil-1)
-            
+
         refresh_strip(getColor(i))
 
         if i > 100:
