@@ -59,7 +59,6 @@ def add_led(nb):
 STEP = 0.10
 
 def refresh_strip():
-    print("try refresh")
     for i in range(len(led_tab)):
         if(led_tab[i] > 0):
             print("("+str(i)+", "+str(led_tab[i])+")")
