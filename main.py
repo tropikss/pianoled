@@ -182,15 +182,15 @@ try:
             notes_appuyees.add(msg.note)
             print("note_on")
             add_led(msg.note)
-            ledColor(floor, (255, 0, 0), ef)
-            ledColor(ceil, (255, 0, 0), ec)
+            #ledColor(floor, (255, 0, 0), ef)
+            #ledColor(ceil, (255, 0, 0), ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
-            ledOff(floor)
-            ledOff(ceil)
+            #ledOff(floor)
+            #ledOff(ceil)
 
-        #refresh_strip()
+        refresh_strip()
 
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
