@@ -183,7 +183,7 @@ try:
             #ledOff(floor-1)
             #ledOff(ceil-1)
             rem_led(floor-1)
-            rem_ceil(ceil-1)
+            rem_led(ceil-1)
             refresh_strip()
 
         if i > 100:
