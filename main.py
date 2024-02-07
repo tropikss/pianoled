@@ -85,7 +85,7 @@ def refresh_strip():
     to_remove = []
     for i in led_tab:
         if(led_tab[i] > 0):
-            couleur = get_orange_gradient((i/LED_COUNT)*100-1)
+            couleur = getColor((i/LED_COUNT)*100)
             ledColor(i, couleur, led_tab[i])
             led_tab[i] = round(led_tab[i] - STEP, 2)
         else:
