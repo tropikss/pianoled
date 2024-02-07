@@ -37,7 +37,7 @@ def conversion(argument):
     }
     return switcher.get(argument, lambda: "Valeur invalide")()
 
-led_tab = []
+led_tab = {}
 
 def led_tab_init():
     for i in range(LED_COUNT):
@@ -152,8 +152,6 @@ port_name = port[1]
 midi_port = mido.open_input(port_name)
 
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
-
-led_tab_init()
 
 i = 0
 
