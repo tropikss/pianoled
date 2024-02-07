@@ -51,11 +51,11 @@ def rem_led(nb):
 
 STEP = 0.10
 
-def refresh_strip():
+def refresh_strip(couleur):
     for i in led_tab:
         if(led_tab[i] > 0):
             print("ledColor("+str(i)+", "+str(led_tab[i])+")")
-            ledColor(i, led_tab[i])
+            ledColor(i, couleur, led_tab[i])
             led_tab[i] -= STEP
             if(led_tab[i] < 0):
                 led_tab[i] = 0
@@ -176,7 +176,7 @@ try:
             add_led(ceil-1, 1-ec)
             #ledColor(floor-1, getColor(i), 1-ef)
             #ledColor(ceil-1, getColor(i), 1-ec)
-            refresh_strip()
+            refresh_strip(getColor(i))
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
@@ -185,7 +185,7 @@ try:
             #ledOff(ceil-1)
             rem_led(floor-1)
             rem_led(ceil-1)
-            refresh_strip()
+            refresh_strip(getColor(i))
 
         if i > 100:
             i = 0
