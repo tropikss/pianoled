@@ -159,7 +159,6 @@ try:
             #ledOff(floor-1)
             #ledOff(ceil-1)
             #rem_led(floor-1)
-            rem_led(ceil-1)
 
         print(led_tab)
         refresh_strip(getColor(i))
