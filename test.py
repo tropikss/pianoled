@@ -20,7 +20,7 @@ def conversion(argument):
 
 LED_COUNT = 74
 
-led_tab = []
+led_tab = {}
 
 def classic(note):
     nb = note - 21
@@ -32,27 +32,26 @@ def classic(note):
 
     return {floor:ef, ceil:ec}
 
-def led_tab_init():
-    for i in range(LED_COUNT):
-        led_tab.append(0)
-
 def add_led(nb, v):
     led_tab[nb] = v
+
+def rem_led(nb):
+    led_tab.pop(nb)
 
 STEP = 0.10
 
 def refresh_strip():
-    for i in range(len(led_tab)):
+    for i in led_tab:
         if(led_tab[i] > 0):
             print("ledColor("+str(i)+", "+str(led_tab[i])+")")
             led_tab[i] -= STEP
             if(led_tab[i] < 0):
                 led_tab[i] = 0
 
-
-led_tab_init()
-
 add_led(23, 0.5)
+add_led (22, 0.75)
+
+rem_led(23)
 
 for i in range(10):
     refresh_strip()

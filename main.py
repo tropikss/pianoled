@@ -43,31 +43,21 @@ def led_tab_init():
     for i in range(LED_COUNT):
         led_tab.append(0)
 
-def add_led(nb):
-    nb = nb - 21
-    temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
-    floor = math.floor(temp)
-    ceil = math.ceil(temp)
-    ef = round(temp - floor, 2)
-    ec = round(ceil - temp, 2)
+def add_led(nb, v):
+    led_tab[nb] = v
 
-    led_tab[floor] = ef 
-    led_tab[ceil] = ec
-
-    print("added led : " + str(floor) + str(ceil))
+def rem_led(nb):
+    led_tab.pop(nb)
 
 STEP = 0.10
 
 def refresh_strip():
-    for i in range(len(led_tab)):
+    for i in led_tab:
         if(led_tab[i] > 0):
-            print("("+str(i)+", "+str(led_tab[i])+")")
-            ledColor(i, (255, 0, 0), led_tab[i])
+            print("ledColor("+str(i)+", "+str(led_tab[i])+")")
             led_tab[i] -= STEP
             if(led_tab[i] < 0):
                 led_tab[i] = 0
-        else:
-            ledOff(i)
 
 def getColor(percentage):
     """
@@ -183,18 +173,20 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
-            print("note_on")
-            add_led(msg.note)
-            ledColor(floor-1, getColor(i), 1-ef)
-            ledColor(ceil-1, getColor(i), 1-ec)
-            #refresh_strip()
+            add_led(floor-1, 1-ef)
+            add_led(ceil-1, 1-ec)
+            #ledColor(floor-1, getColor(i), 1-ef)
+            #ledColor(ceil-1, getColor(i), 1-ec)
+            refresh_strip()
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
-            ledOff(floor-1)
-            ledOff(ceil-1)
-            #refresh_strip()
+            #ledOff(floor-1)
+            #ledOff(ceil-1)
+            rem_led(floor-1)
+            rem_ceil(ceil-1)
+            refresh_strip()
 
         if i > 100:
             i = 0
