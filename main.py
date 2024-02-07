@@ -171,6 +171,7 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
+            print("note_on")
             add_led(msg.note)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
