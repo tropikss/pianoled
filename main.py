@@ -88,18 +88,18 @@ try:
 
             nb = msg.note - 21
             v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+            print((conversion(nb%12) + (nb//12)*7))
 
             ledIntensite(v)
-            print(f"Notes appuyees : {notes_appuyees}")
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
 
             nb = msg.note - 21
             v = int(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+            print((conversion(nb%12) + (nb//12)*7))
 
             ledOff(v)
             notes_appuyees.discard(msg.note)
-            print(f"Notes appuyées : {notes_appuyees}")
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
 finally:
