@@ -167,7 +167,19 @@ led_tab_init()
 
 try:
     for msg in midi_port:
-        print(msg.type)
+        if(msg.type != 'clock')
+            nb = msg.note - 21
+            temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
+            floor = math.floor(temp)
+            ceil = math.ceil(temp)
+            ef = round(temp - floor, 2)
+            ec = round(ceil - temp, 2)
+            led_tab[floor] = ef 
+            led_tab[ceil] = ec
+
+            ledColor(floor, (255, 0, 0), ef)
+            ledColor(ceil, (255, 0, 0), ec)
+
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
@@ -177,7 +189,7 @@ try:
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
 
-        refresh_strip()
+        #refresh_strip()
 
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
