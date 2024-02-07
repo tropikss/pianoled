@@ -37,6 +37,35 @@ def conversion(argument):
     }
     return switcher.get(argument, lambda: "Valeur invalide")()
 
+led_tab = []
+
+def classic(note):
+    nb = note - 21
+    temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
+    floor = math.floor(temp)
+    ceil = math.ceil(temp)
+    ef = round(temp - floor, 2)
+    ec = round(ceil - temp, 2)
+
+    return {floor:ef, ceil:ec}
+
+def led_tab_init():
+    for i in range(LED_COUNT):
+        led_tab.append(0)
+
+def add_led(nb, v):
+    led_tab[nb] = v
+
+STEP = 0.10
+
+def refresh_strip():
+    for i in range(len(led_tab)):
+        if(led_tab[i] > 0):
+            ledColor(i, led_tab[i])
+            led_tab[i] -= STEP
+            if(led_tab[i] < 0):
+                led_tab[i] = 0
+
 def getColor(percentage):
     """
     Renvoie un triplet d'entiers représentant une couleur en fonction du pourcentage donné.
@@ -117,49 +146,38 @@ def ledOn(nb):
 def ledOff(nb):
     strip.setPixelColor(nb, black)
     strip.show()
+    leds_allumees.pop(numero_led, None)
 
 # Affiche tous les ports MIDI disponibles
 port = mido.get_input_names()
 print(mido.get_input_names())
 
+nb_led
+
 notes_appuyees = set()
+leds_allumees = {}
 
 # Choisis le port MIDI approprié
 port_name = port[1]
 midi_port = mido.open_input(port_name)
 
-i = 0
-
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
+
+led_tab_init()
+
 try:
     for msg in midi_port:
-
-        if(msg.type != 'clock' and msg.type != 'control_change'):
-            nb = msg.note - 21
-            temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
-            floor = math.floor(temp)
-            ceil = math.ceil(temp)
-            ef = round(temp - floor, 2)
-            ec = round(ceil - temp, 2)
-
-            v = round(temp) - 1
 
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
-            ledColor(floor-1, getColor(i), 1-ef)
-            ledColor(ceil-1, getColor(i), 1-ec)
-            i += 1
+            add_led(msg.note)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            ledOff(floor-1)
-            ledOff(ceil-1)
-
             notes_appuyees.discard(msg.note)
 
-        if(i > 100):
-            i = 0
-            
+        refresh_strip()
+
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
 finally:
