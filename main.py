@@ -166,6 +166,8 @@ oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
 
 led_tab_init()
 
+i = 0
+
 try:
     for msg in midi_port:
         if(msg.type != 'clock'):
@@ -183,15 +185,19 @@ try:
             notes_appuyees.add(msg.note)
             print("note_on")
             add_led(msg.note)
-            ledColor(floor, (255, 0, 0), ef)
-            ledColor(ceil, (255, 0, 0), ec)
+            ledColor(floor, getColor(i), ef)
+            ledColor(ceil, getColor(i), ec)
+            i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
             ledOff(floor)
             ledOff(ceil)
 
-        refresh_strip()
+        #refresh_strip()
+
+        if i > 100:
+            i = 0
 
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
