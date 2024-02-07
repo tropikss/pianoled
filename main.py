@@ -87,19 +87,14 @@ try:
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09
             v = round(temp) - 1
-            v2 = round(temp-0.4) - 1
             print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
             ledIntensite(v)
-            if(v != v2):
-                ledIntensite(v2)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             ledOff(v)
-            if(v != v2):
-                ledOff(v2)
 
             notes_appuyees.discard(msg.note)
             
