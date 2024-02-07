@@ -57,8 +57,8 @@ def refresh_strip(couleur):
             led_tab[i] = round(led_tab[i] - STEP, 2)
             if(led_tab[i] <= 0):
                 to_remove.append(i)
-                ledOff(i)
     for i in to_remove:
+        ledOff(i)
         rem_led(i)
 
 def getColor(percentage):
