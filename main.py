@@ -96,7 +96,7 @@ def wave(nb, couleur):
             ledColor(d, couleur, 0.5)
             ledOff(d-1)
         g += 1
-        d += 1
+        d -= 1
         time.sleep(0.03)
     ledOff(d)
     ledOff(g)
