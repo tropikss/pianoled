@@ -99,8 +99,8 @@ try:
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            ledColor(floor-1, (255, 0, 0), ef)
-            ledColor(ceil-1, (255, 0, 0), ec)
+            ledColor(floor-1, (255, 0, 0), 1-ef)
+            ledColor(ceil-1, (255, 0, 0), 1-ec)
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             ledOff(floor-1)
