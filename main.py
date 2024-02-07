@@ -149,7 +149,7 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
             #add_led(floor-1, 1-ef)
-            add_led(ceil-1, round(1-ec, 2))
+            add_led(ceil-1, 0.5)
             #ledColor(floor-1, getColor(i), 1-ef)
             #ledColor(ceil-1, getColor(i), 1-ec)
             i += 1
