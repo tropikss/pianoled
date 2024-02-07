@@ -185,16 +185,16 @@ try:
             notes_appuyees.add(msg.note)
             print("note_on")
             add_led(msg.note)
-            #ledColor(floor-1, getColor(i), ef)
-            #ledColor(ceil-1, getColor(i), ec)
-            refresh_strip()
+            ledColor(floor-1, getColor(i), ef)
+            ledColor(ceil-1, getColor(i), ec)
+            #refresh_strip()
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
             notes_appuyees.discard(msg.note)
-            #ledOff(floor-1)
-            #ledOff(ceil-1)
-            refresh_strip()
+            ledOff(floor-1)
+            ledOff(ceil-1)
+            #refresh_strip()
 
         if i > 100:
             i = 0
