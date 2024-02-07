@@ -88,13 +88,13 @@ try:
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.28
             floor = math.floor(temp)
             ceil = math.ceil(temp)
-            eg = floor - temp
-            ed = ceil - temp
+            eg = round(floor - temp, 2)
+            ed = round(ceil - temp, 2)
             print(eg)
             print(ed)
+            print("\n")
 
             v = round(temp) - 1
-            print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
