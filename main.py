@@ -169,6 +169,7 @@ i = 0
 
 try:
     for msg in midi_port:
+        print(msg)
         if(msg.type != 'clock'):
             print(msg.note)
             nb = msg.note - 21
