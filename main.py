@@ -148,7 +148,7 @@ try:
         if msg.type == 'note_on' and msg.velocity > 0:
             print(notes_appuyees)
             notes_appuyees.add(msg.note)
-            add_led(floor-1, 1-ef)
+            #add_led(floor-1, 1-ef)
             add_led(ceil-1, 1-ec)
             #ledColor(floor-1, getColor(i), 1-ef)
             #ledColor(ceil-1, getColor(i), 1-ec)
@@ -158,7 +158,7 @@ try:
             notes_appuyees.discard(msg.note)
             #ledOff(floor-1)
             #ledOff(ceil-1)
-            rem_led(floor-1)
+            #rem_led(floor-1)
             rem_led(ceil-1)
 
         refresh_strip(getColor(i))
