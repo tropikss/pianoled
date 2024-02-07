@@ -87,7 +87,7 @@ try:
             notes_appuyees.add(msg.note)
 
             nb = msg.note - 21
-            v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT) - 1
+            v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09) - 1
             print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
             ledIntensite(v)
