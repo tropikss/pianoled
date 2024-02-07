@@ -194,6 +194,7 @@ try:
             #ledOff(floor-1)
             #ledOff(ceil-1)
 
+        print(i)
         for led_index, intensity in enumerate(led_tab):
             if intensity > 0:
                 ledColor(led_index, getColor(intensity), intensity)
