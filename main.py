@@ -170,8 +170,6 @@ i = 0
 try:
     for msg in midi_port:
 
-        refresh_strip()
-
         if(msg.type != 'clock'):
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
@@ -195,6 +193,15 @@ try:
             notes_appuyees.discard(msg.note)
             #ledOff(floor-1)
             #ledOff(ceil-1)
+
+        for led_index, intensity in enumerate(led_tab):
+            if intensity > 0:
+                ledColor(led_index, getColor(intensity), intensity)
+                led_tab[led_index] -= STEP
+                if led_tab[led_index] < 0:
+                    led_tab[led_index] = 0
+            else:
+                ledOff(led_index)
 
         if i > 100:
             i = 0
