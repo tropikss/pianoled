@@ -125,8 +125,8 @@ def ledOff(nb):
 port = mido.get_input_names()
 print(mido.get_input_names())
 
-notes_appuyees = set()
-leds_allumees = {}
+notes_appuyees = {}
+
 
 # Choisis le port MIDI approprié
 port_name = port[1]
@@ -149,18 +149,15 @@ try:
             ec = round(ceil - temp, 2)
 
         if msg.type == 'note_on' and msg.velocity > 0:
-            notes_appuyees.add(msg.note)
-            #add_led(floor-1, 1-ef)
-            add_led(ceil-1, 0.5)
-            #ledColor(floor-1, getColor(i), 1-ef)
-            #ledColor(ceil-1, getColor(i), 1-ec)
+            notes_appuyees[msg.note] = ceil-1
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            notes_appuyees.discard(msg.note)
-            #ledOff(floor-1)
-            #ledOff(ceil-1)
-            #rem_led(floor-1)
+            if msg.note in notes_appuyees:
+                del notes_appuyees[msg.note]
+        
+        for i in notes_appuyees:
+            add_led(notes_appuyees[i], 0.5)
 
         print(led_tab)
         refresh_strip(getColor(i))
