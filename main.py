@@ -4,7 +4,7 @@ from rpi_ws281x import PixelStrip, Color
 import math
 
 # Configuration des LEDs
-LED_COUNT = 75         # Nombre total de LEDs dans la bande
+LED_COUNT = 74         # Nombre total de LEDs dans la bande
 LED_PIN = 18           # GPIO utilisé pour contrôler les LEDs
 LED_FREQ_HZ = 800000   # Fréquence des LEDs (ne pas modifier)
 LED_DMA = 10           # Canal DMA utilisé pour transmettre les données aux LEDs (ne pas modifier)
