@@ -39,7 +39,11 @@ def conversion(argument):
 
 led_tab = []
 
-def classic(note):
+def led_tab_init():
+    for i in range(LED_COUNT):
+        led_tab.append(0)
+
+def add_led(nb):
     nb = note - 21
     temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
     floor = math.floor(temp)
@@ -47,14 +51,8 @@ def classic(note):
     ef = round(temp - floor, 2)
     ec = round(ceil - temp, 2)
 
-    return {floor:ef, ceil:ec}
-
-def led_tab_init():
-    for i in range(LED_COUNT):
-        led_tab.append(0)
-
-def add_led(nb, v):
-    led_tab[nb] = v
+    led_tab[floor] = ef 
+    led_tab[ceil] = ec
 
 STEP = 0.10
 
