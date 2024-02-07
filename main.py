@@ -83,7 +83,6 @@ midi_port = mido.open_input(port_name)
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
 try:
     for msg in midi_port:
-        print(msg.type)
         if(msg.type != 'clock'):
             nb = msg.note - 21
             v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09) - 1
