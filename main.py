@@ -140,9 +140,7 @@ try:
             print(msg.type)
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
-            floor = math.floor(temp)
             ceil = math.ceil(temp)
-            ef = round(temp - floor, 2)
             ec = round(ceil - temp, 2)
 
         if msg.type == 'note_on' and msg.velocity > 0:
