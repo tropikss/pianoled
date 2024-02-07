@@ -85,7 +85,7 @@ try:
     for msg in midi_port:
         if(msg.type != 'clock'):
             nb = msg.note - 21
-            temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.30
+            temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.20
             floor = math.floor(temp)
             ceil = math.ceil(temp)
             eg = round(floor - temp, 2)
