@@ -84,7 +84,7 @@ oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
 try:
     for msg in midi_port:
         
-        if(msg != None):
+        if(msg is not None):
             nb = msg.note - 21
             v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09) - 1
             print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
