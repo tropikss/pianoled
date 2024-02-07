@@ -190,7 +190,7 @@ try:
             ledOff(floor)
             ledOff(ceil)
 
-        refresh_strip()
+        #refresh_strip()
 
 except KeyboardInterrupt:
     print("\nLecture arrêtée.")
