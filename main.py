@@ -20,6 +20,20 @@ red = Color(255, 0, 0)
 
 black = Color(0, 0, 0)
 
+def conversion(nb):
+    if(nb == 2):
+        return 1.5
+    elif(nb == 4):
+        return 2.5
+    elif(nb == 7):
+        return 4.5
+    elif(nb == 9):
+        return 5.5
+    elif(nb == 11):
+        return 6.5
+    else:
+        return nb
+
 def getColor(intensite):
 
     # Convertir l'intensité en une valeur entre 0 et 255
@@ -68,11 +82,14 @@ try:
     for msg in midi_port:
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
-            v = math.ceil(((msg.note-22)/88)*75)
+
+            v = math.ceil(((conversion((nb-22)%12) + ((nb-22)//12)*7) / 52) * LED_COUNT)
+
             ledIntensite(v)
             print(f"Notes appuyees : {notes_appuyees}")
+
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
-            v = math.ceil(((msg.note-22)/88)*75)
+            v = math.ceil(((conversion((nb-22)%12) + ((nb-22)//12)*7) / 52) * LED_COUNT)
             ledOff(v)
             notes_appuyees.discard(msg.note)
             print(f"Notes appuyées : {notes_appuyees}")
