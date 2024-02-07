@@ -37,7 +37,7 @@ def conversion(argument):
     }
     return switcher.get(argument, lambda: "Valeur invalide")()
 
-def get_color(percentage):
+def getColor(percentage):
     """
     Renvoie un triplet d'entiers représentant une couleur en fonction du pourcentage donné.
     Le pourcentage doit être compris entre 0 et 100.
