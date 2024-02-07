@@ -40,7 +40,8 @@ def conversion(argument):
 led_tab = {}
 
 def add_led(nb, v):
-    led_tab[nb] = v
+    if nb is not in led_tab:
+        led_tab[nb] = v
 
 def rem_led(nb):
     if nb in led_tab:
