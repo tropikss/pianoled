@@ -83,10 +83,11 @@ midi_port = mido.open_input(port_name)
 oldmsg = mido.Message('note_on', note=0, velocity=0, time=0)
 try:
     for msg in midi_port:
-
-        nb = msg.note - 21
-        v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09) - 1
-        print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
+        
+        if(msg != None):
+            nb = msg.note - 21
+            v = round(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.09) - 1
+            print(((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT)
 
         if msg.type == 'note_on' and msg.velocity > 0:
             notes_appuyees.add(msg.note)
