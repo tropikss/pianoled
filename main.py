@@ -44,7 +44,7 @@ def led_tab_init():
         led_tab.append(0)
 
 def add_led(nb):
-    nb = note - 21
+    nb = nb - 21
     temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
     floor = math.floor(temp)
     ceil = math.ceil(temp)
