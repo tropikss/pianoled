@@ -201,6 +201,7 @@ try:
 
         if msg.type == 'note_on' and msg.velocity > 0:
             print(msg.velocity)
+            velocity = msg.velocity
             notes_appuyees[msg.note] = ceil-1
             i += 1
 
@@ -212,7 +213,7 @@ try:
             add_led(notes_appuyees[u], 0.5)
             i += 1
 
-        refresh_strip(msg.velocity)
+        refresh_strip(velocity)
 
         if i > 100:
             i = 0
