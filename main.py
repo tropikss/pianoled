@@ -47,6 +47,8 @@ def velocity_gradient(percentage):
     return (r, g, b)
 
 def get_blue_gradient(percentage):
+    if(percentage > 99):
+        percentage = 99
     """
     Renvoie un triplet d'entiers représentant une couleur bleue allant d'un bleu ciel à un bleu profond.
     Le pourcentage doit être compris entre 0 et 100.
@@ -111,7 +113,7 @@ def refresh_strip():
         intensity = led_tab[i][0]
         velocity = led_tab[i][1]
         if(intensity > 0):
-            couleur = velocity_gradient((velocity/120)*100)
+            couleur = velocity_gradient((velocity/90)*100)
             ledColor(i, couleur, intensity)
             led_tab[i][0] = round(intensity - STEP, 2)
         else:
