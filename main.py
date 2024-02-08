@@ -23,27 +23,28 @@ STEP = 0.05
 red = Color(255, 0, 0)
 black = Color(0, 0, 0)
 
-def velocity_gradient(percentage):
+def veolicty_gradient(percentage):
     """
-    Renvoie un triplet d'entiers représentant une couleur allant du jaune à l'orange, puis au rouge en fonction du pourcentage.
+    Renvoie un triplet d'entiers représentant une couleur en fonction du pourcentage donné.
+    La couleur varie du jaune au rouge en fonction de la valeur donnée.
     Le pourcentage doit être compris entre 0 et 100.
     """
-    # Définition des couleurs de référence
-    yellow = (255, 255, 0)   # Jaune
-    orange = (255, 165, 0)   # Orange
-    red = (255, 0, 0)        # Rouge
-
-    # Calcul de la couleur intermédiaire en fonction du pourcentage
-    if percentage <= 40:
+    # Calcul de la couleur en fonction du pourcentage
+    if percentage <= 33.33:
         # Jaune à orange
-        r = yellow[0] + int((orange[0] - yellow[0]) * percentage / 40)
-        g = yellow[1] + int((orange[1] - yellow[1]) * percentage / 40)
-        b = yellow[2] + int((orange[2] - yellow[2]) * percentage / 40)
-    else:
+        r = int(255 * percentage / 33.33)
+        g = 255
+        b = 0
+    elif percentage <= 66.66:
         # Orange à rouge
-        r = orange[0] + int((red[0] - orange[0]) * (percentage - 40) / 60)
-        g = orange[1] + int((red[1] - orange[1]) * (percentage - 40) / 60)
-        b = orange[2] + int((red[2] - orange[2]) * (percentage - 40) / 60)
+        r = 255
+        g = int(255 - 255 * (percentage - 33.33) / 33.33)
+        b = 0
+    else:
+        # Rouge
+        r = 255
+        g = 0
+        b = int(255 * (percentage - 66.66) / 33.33)
 
     return (r, g, b)
 
