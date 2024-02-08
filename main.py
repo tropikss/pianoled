@@ -29,22 +29,20 @@ def velocity_gradient(percentage):
     La couleur varie du jaune au rouge en fonction de la valeur donnée.
     Le pourcentage doit être compris entre 0 et 100.
     """
-    # Calcul de la couleur en fonction du pourcentage
-    if percentage <= 33.33:
+    # Assurer que le pourcentage est dans la plage correcte
+    percentage = max(0, min(100, percentage))
+
+    # Calcul des composantes de couleur en fonction du pourcentage
+    if percentage <= 50:
         # Jaune à orange
-        r = int(255 * percentage / 33.33)
-        g = 255
-        b = 0
-    elif percentage <= 66.66:
-        # Orange à rouge
         r = 255
-        g = int(255 - 255 * (percentage - 33.33) / 33.33)
+        g = int(255 * percentage / 50)
         b = 0
     else:
-        # Rouge
+        # Orange à rouge
         r = 255
-        g = 0
-        b = int(255 * (percentage - 66.66) / 33.33)
+        g = int(255 - 255 * (percentage - 50) / 50)
+        b = 0
 
     return (r, g, b)
 
