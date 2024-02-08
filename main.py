@@ -113,7 +113,7 @@ def refresh_strip():
         intensity = led_tab[i][0]
         velocity = led_tab[i][1]
         if(intensity > 0):
-            couleur = velocity_gradient((velocity/90)*100)
+            couleur = velocity_gradient((velocity/70)*100)
             ledColor(i, couleur, intensity)
             led_tab[i][0] = round(intensity - STEP, 2)
         else:
