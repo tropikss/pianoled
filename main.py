@@ -23,6 +23,30 @@ STEP = 0.05
 red = Color(255, 0, 0)
 black = Color(0, 0, 0)
 
+def velocity_gradient(percentage):
+    """
+    Renvoie un triplet d'entiers représentant une couleur allant du jaune à l'orange, puis au rouge en fonction du pourcentage.
+    Le pourcentage doit être compris entre 0 et 100.
+    """
+    # Définition des couleurs de référence
+    yellow = (255, 255, 0)   # Jaune
+    orange = (255, 165, 0)   # Orange
+    red = (255, 0, 0)        # Rouge
+
+    # Calcul de la couleur intermédiaire en fonction du pourcentage
+    if percentage <= 40:
+        # Jaune à orange
+        r = yellow[0] + int((orange[0] - yellow[0]) * percentage / 40)
+        g = yellow[1] + int((orange[1] - yellow[1]) * percentage / 40)
+        b = yellow[2] + int((orange[2] - yellow[2]) * percentage / 40)
+    else:
+        # Orange à rouge
+        r = orange[0] + int((red[0] - orange[0]) * (percentage - 40) / 60)
+        g = orange[1] + int((red[1] - orange[1]) * (percentage - 40) / 60)
+        b = orange[2] + int((red[2] - orange[2]) * (percentage - 40) / 60)
+
+    return (r, g, b)
+
 def get_blue_gradient(percentage):
     """
     Renvoie un triplet d'entiers représentant une couleur bleue allant d'un bleu ciel à un bleu profond.
@@ -81,7 +105,7 @@ def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
 
-def refresh_strip():
+def refresh_strip(velocity):
     to_remove = []
     for i in led_tab:
         if(led_tab[i] > 0):
@@ -170,7 +194,7 @@ try:
     for msg in midi_port:
 
         if(msg.type != 'clock' and msg.type != 'control_change'):
-            print(msg.type)
+            print(msg.velocity)
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
             ceil = math.ceil(temp)
@@ -188,7 +212,7 @@ try:
             add_led(notes_appuyees[u], 0.5)
             i += 1
 
-        refresh_strip()
+        refresh_strip(msg.velocity)
 
         if i > 100:
             i = 0
