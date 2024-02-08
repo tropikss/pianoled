@@ -23,7 +23,7 @@ STEP = 0.05
 red = Color(255, 0, 0)
 black = Color(0, 0, 0)
 
-def veolicty_gradient(percentage):
+def velocity_gradient(percentage):
     """
     Renvoie un triplet d'entiers représentant une couleur en fonction du pourcentage donné.
     La couleur varie du jaune au rouge en fonction de la valeur donnée.
