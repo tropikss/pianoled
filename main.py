@@ -99,20 +99,23 @@ def conversion(argument):
 
 led_tab = {}
 
-def add_led(nb, v):
-    led_tab[nb] = v
+def add_led(nb, v, velocity):
+    led_tab[nb] = (v, velocity)
 
 def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
 
-def refresh_strip(velocity):
+def refresh_strip():
     to_remove = []
     for i in led_tab:
-        if(led_tab[i] > 0):
+        # value intensity
+        intensity = led_tab[i][0]
+        velocity = led_tab[i][1]
+        if(intensity > 0):
             couleur = velocity_gradient((velocity/120)*100)
-            ledColor(i, couleur, led_tab[i])
-            led_tab[i] = round(led_tab[i] - STEP, 2)
+            ledColor(i, couleur, intensity)
+            led_tab[i][0] = round(intensity - STEP, 2)
         else:
             to_remove.append(i)
     for i in to_remove:
@@ -201,8 +204,6 @@ try:
             ec = round(ceil - temp, 2)
 
         if msg.type == 'note_on' and msg.velocity > 0:
-            print(msg.velocity)
-            velocity = msg.velocity
             notes_appuyees[msg.note] = ceil-1
             i += 1
 
@@ -211,10 +212,10 @@ try:
                 del notes_appuyees[msg.note]
         
         for u in notes_appuyees:
-            add_led(notes_appuyees[u], 0.5)
+            add_led(notes_appuyees[u], 0.5, msg.velocity)
             i += 1
 
-        refresh_strip(velocity)
+        refresh_strip()
 
         if i > 100:
             i = 0
