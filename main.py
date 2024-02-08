@@ -204,7 +204,7 @@ try:
             ec = round(ceil - temp, 2)
 
         if msg.type == 'note_on' and msg.velocity > 0:
-            notes_appuyees[msg.note] = ceil-1
+            notes_appuyees[msg.note] = [ceil-1, msg.velocity]
             i += 1
 
         elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
@@ -212,7 +212,7 @@ try:
                 del notes_appuyees[msg.note]
         
         for u in notes_appuyees:
-            add_led(notes_appuyees[u], 0.5, msg.velocity)
+            add_led(notes_appuyees[u][0], 0.5, notes_appuyees[u][1])
             i += 1
 
         refresh_strip()
