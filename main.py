@@ -110,12 +110,12 @@ def refresh_strip():
     to_remove = []
     for i in led_tab:
         # value intensity
-        intensity = led_tab[i].0
-        velocity = led_tab[i].1
+        intensity = led_tab[i][0]
+        velocity = led_tab[i][1]
         if(intensity > 0):
             couleur = velocity_gradient((velocity/120)*100)
             ledColor(i, couleur, intensity)
-            led_tab[i].0 = round(intensity - STEP, 2)
+            led_tab[i][0] = round(intensity - STEP, 2)
         else:
             to_remove.append(i)
     for i in to_remove:
