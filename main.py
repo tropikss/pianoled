@@ -100,7 +100,7 @@ def conversion(argument):
 led_tab = {}
 
 def add_led(nb, v, velocity):
-    led_tab[nb] = (v, velocity)
+    led_tab[nb] = [v, velocity]
 
 def rem_led(nb):
     if nb in led_tab:
