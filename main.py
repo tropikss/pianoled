@@ -188,7 +188,6 @@ try:
             add_led(notes_appuyees[u], 0.5)
             i += 1
 
-        print(led_tab)
         refresh_strip()
 
         if i > 100:
