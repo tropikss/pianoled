@@ -194,13 +194,13 @@ try:
     for msg in midi_port:
 
         if(msg.type != 'clock' and msg.type != 'control_change'):
-            print(msg.velocity)
             nb = msg.note - 21
             temp = ((conversion(nb%12) + (nb//12)*7) / 52) * LED_COUNT - 0.21
             ceil = math.ceil(temp)
             ec = round(ceil - temp, 2)
 
         if msg.type == 'note_on' and msg.velocity > 0:
+            print(msg.velocity)
             notes_appuyees[msg.note] = ceil-1
             i += 1
 
