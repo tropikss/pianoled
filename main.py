@@ -105,9 +105,8 @@ def add_led(nb, v):
 def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
-i = 0
+        
 def refresh_strip(vr):
-    i += 1
     to_remove = []
     for i in led_tab:
         # value intensity
