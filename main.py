@@ -99,8 +99,8 @@ def conversion(argument):
 
 led_tab = {}
 
-def add_led(nb, v):
-    led_tab[nb] = [v]
+def add_led(nb, v, couleur):
+    led_tab[nb] = [v, couleur]
 
 def rem_led(nb):
     if nb in led_tab:
@@ -111,9 +111,10 @@ def refresh_strip(vr):
     for i in led_tab:
         # value intensity
         intensity = led_tab[i][0]
+        couleur = led_tab[i][1]
+
         if(intensity > 0):
-            couleur = getColor(vr)
-            ledColor(i, couleur, 100)
+            ledColor(i, getColor(couleur), intensity)
             led_tab[i][0] = round(intensity - STEP, 2)
         else:
             to_remove.append(i)
@@ -211,7 +212,7 @@ try:
                 del notes_appuyees[msg.note]
         
         for u in notes_appuyees:
-            add_led(notes_appuyees[u][0], 0.5)
+            add_led(notes_appuyees[u][0], 0.5, i)
             i += 1
 
         refresh_strip(i)
