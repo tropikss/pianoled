@@ -105,7 +105,7 @@ def add_led(nb, v):
 def rem_led(nb):
     if nb in led_tab:
         del led_tab[nb]
-        
+
 def refresh_strip(vr):
     to_remove = []
     for i in led_tab:
@@ -211,7 +211,7 @@ try:
                 del notes_appuyees[msg.note]
         
         for u in notes_appuyees:
-            add_led(notes_appuyees[u][0], 0.5, notes_appuyees[u][1])
+            add_led(notes_appuyees[u][0], 0.5)
             i += 1
 
         refresh_strip(i)
