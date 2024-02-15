@@ -17,7 +17,7 @@ strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRI
 strip.begin()
 
 # Parametre de controle 
-STEP = 0.05
+STEP = 0.2
 
 # Couleur prédéfinies
 red = Color(255, 0, 0)
